@@ -1,3 +1,4 @@
+import 'package:flight_search_app/features/flight%20search/presentation/pages/search/search_screen.dart';
 import 'package:flight_search_app/features/flight%20search/presentation/widgets/buttons.dart';
 import 'package:flight_search_app/features/flight%20search/presentation/widgets/colors.dart';
 import 'package:flight_search_app/features/flight%20search/presentation/widgets/text.dart';
@@ -20,13 +21,27 @@ class _OnboardingScreenState extends State<OnboardingScreen> {
   final List<OnboardingPage> _pages = [
     OnboardingPage(
       backgroundColor: bluePrimary,
-      image: Assets.images.onboarding1.image(),
+      image: ClipRRect(
+        borderRadius: BorderRadius.only(
+          topLeft: Radius.circular(50.r),
+          bottomLeft: Radius.circular(50.r),
+          bottomRight: Radius.circular(50.r),
+        ),
+        child: Assets.images.onboarding1.image(),
+      ),
       title: 'Search Flights Instantly',
       subtitle: 'Find the best flight deals in seconds',
     ),
     OnboardingPage(
       backgroundColor: purpleSecondary,
-      image: Assets.images.onboarding2.image(),
+      image: ClipRRect(
+        borderRadius: BorderRadius.only(
+          topRight: Radius.circular(50.r),
+          bottomLeft: Radius.circular(50.r),
+          bottomRight: Radius.circular(50.r),
+        ),
+        child: Assets.images.onboarding2.image(),
+      ),
       title: 'Compare Prices Easily',
       subtitle:
           'Find the best deals on flights from\nmultiple airlines in one place.',
@@ -48,7 +63,7 @@ class _OnboardingScreenState extends State<OnboardingScreen> {
           children: [
             SizedBox(height: 40.spMin),
             Expanded(
-              flex: 3,
+              flex: 2,
               child: PageView(
                 controller: _pageController,
                 onPageChanged: (int page) {
@@ -61,7 +76,7 @@ class _OnboardingScreenState extends State<OnboardingScreen> {
                     .toList(),
               ),
             ),
-            SizedBox(height: 20.spMin),
+
             SmoothPageIndicator(
               controller: _pageController,
               count: _pages.length,
@@ -94,12 +109,15 @@ class _OnboardingScreenState extends State<OnboardingScreen> {
                     );
                   } else {
                     // Navigate to next screen
-                    // Navigator.push(context, MaterialPageRoute(builder: (context) => NextScreen()));
+                    Navigator.push(
+                      context,
+                      MaterialPageRoute(builder: (context) => SearchScreen()),
+                    );
                   }
                 },
               ),
             ),
-            SizedBox(height: 40.spMin),
+            SizedBox(height: 20.spMin),
           ],
         ),
       ),
