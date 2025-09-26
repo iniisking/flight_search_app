@@ -1,5 +1,6 @@
 import 'package:flight_search_app/features/flight%20search/presentation/pages/onboarding/onboarding_screen.dart';
 import 'package:flutter/material.dart';
+import 'package:flutter_riverpod/flutter_riverpod.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
 
 void main() {
@@ -16,16 +17,19 @@ class MyApp extends StatelessWidget {
       minTextAdapt: true,
       splitScreenMode: true,
       builder: (context, child) {
-        return MaterialApp(
-          debugShowCheckedModeBanner: false,
-          title: 'Flight Searchs',
-          theme: ThemeData(
-            colorScheme: ColorScheme.fromSeed(seedColor: Colors.deepPurple),
+        return ProviderScope(
+          child: MaterialApp(
+            debugShowCheckedModeBanner: false,
+            title: 'Flight Search',
+            theme: ThemeData(
+              colorScheme: ColorScheme.fromSeed(seedColor: Colors.deepPurple),
+              useMaterial3: true,
+            ),
+            home: child,
           ),
-          home: child,
         );
       },
-      child: OnboardingScreen(),
+      child: const OnboardingScreen(),
     );
   }
 }

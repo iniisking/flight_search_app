@@ -32,28 +32,26 @@ class _DropdownSelectorState extends State<DropdownSelector> {
   @override
   Widget build(BuildContext context) {
     return Container(
-      height: 56.spMin, // Fixed height of 56px
+      height: 56.spMin,
       decoration: BoxDecoration(
         color: lightGrey2,
-        borderRadius: BorderRadius.circular(12.spMin), // 12px border radius
+        borderRadius: BorderRadius.circular(12.spMin),
       ),
       child: DropdownButtonFormField<String>(
-        borderRadius: BorderRadius.circular(
-          12.spMin,
-        ), // 12px border radius for dropdown field
-        initialValue: widget.value,
+        borderRadius: BorderRadius.circular(12.spMin),
+        value: widget.value, // Make sure this is set correctly
         onChanged: widget.isLoading ? null : widget.onChanged,
         validator: widget.validator,
         style: TextStyle(
           fontSize: 16.spMin,
           fontWeight: FontWeight.w400,
           overflow: TextOverflow.ellipsis,
-          color: black,
+          color: black, // Ensure text color is visible
         ),
         decoration: InputDecoration(
           hintText: widget.isLoading ? 'Loading...' : widget.hintText,
           hintStyle: TextStyle(
-            color: black,
+            color: lightGrey4, // Use a visible color for hint text
             fontSize: 16.spMin,
             fontWeight: FontWeight.w400,
             letterSpacing: 0.spMin,
@@ -63,24 +61,27 @@ class _DropdownSelectorState extends State<DropdownSelector> {
           isDense: true,
           contentPadding: EdgeInsets.all(16.spMin),
           border: OutlineInputBorder(
-            borderRadius: BorderRadius.circular(12.spMin), // 12px border radius
-            borderSide: BorderSide.none, // No border
+            borderRadius: BorderRadius.circular(12.spMin),
+            borderSide: BorderSide.none,
           ),
           focusedBorder: OutlineInputBorder(
-            borderRadius: BorderRadius.circular(12.spMin), // 12px border radius
-            borderSide: BorderSide.none, // No border
+            borderRadius: BorderRadius.circular(12.spMin),
+            borderSide: BorderSide(
+              color: blueAccent,
+              width: 1.spMin,
+            ), // Add border when focused
           ),
           enabledBorder: OutlineInputBorder(
-            borderRadius: BorderRadius.circular(12.spMin), // 12px border radius
-            borderSide: BorderSide.none, // No border
+            borderRadius: BorderRadius.circular(12.spMin),
+            borderSide: BorderSide.none,
           ),
           errorBorder: OutlineInputBorder(
-            borderRadius: BorderRadius.circular(12.spMin), // 12px border radius
-            borderSide: BorderSide.none, // No border
+            borderRadius: BorderRadius.circular(12.spMin),
+            borderSide: BorderSide(color: Colors.red, width: 1.spMin),
           ),
           focusedErrorBorder: OutlineInputBorder(
-            borderRadius: BorderRadius.circular(12.spMin), // 12px border radius
-            borderSide: BorderSide.none, // No border
+            borderRadius: BorderRadius.circular(12.spMin),
+            borderSide: BorderSide(color: Colors.red, width: 1.spMin),
           ),
           suffixIcon: widget.isLoading
               ? Padding(
@@ -101,10 +102,28 @@ class _DropdownSelectorState extends State<DropdownSelector> {
             ? null
             : Padding(
                 padding: EdgeInsets.all(16.spMin),
-                child: Assets.svg.dropdown.svg(),
+                child: Assets.svg.dropdown.svg(
+                  color: black,
+                ), // Ensure icon is visible
               ),
         isExpanded: true,
-        dropdownColor: lightGrey2, // Match dropdown background with field
+        dropdownColor:
+            white, // Change dropdown background to white for better contrast
+        iconEnabledColor: black, // Ensure dropdown icon color is visible
+        selectedItemBuilder: (BuildContext context) {
+          // This builder ensures the selected item is displayed with proper styling
+          return widget.options.map<Widget>((String item) {
+            return Container(
+              alignment: Alignment.centerLeft,
+              child: CustomTextWidget(
+                text: item,
+                fontSize: 16.spMin,
+                color: black, // Ensure selected text is visible
+                fontWeight: FontWeight.w400,
+              ),
+            );
+          }).toList();
+        },
       ),
     );
   }
@@ -130,7 +149,7 @@ class _DropdownSelectorState extends State<DropdownSelector> {
                   CustomTextWidget(
                     text: 'Loading...',
                     fontSize: 16.spMin,
-                    color: black, // Match hint text color
+                    color: black,
                     fontWeight: FontWeight.w400,
                   ),
                 ],
@@ -152,7 +171,7 @@ class _DropdownSelectorState extends State<DropdownSelector> {
               child: CustomTextWidget(
                 text: 'No options available',
                 fontSize: 16.spMin,
-                color: black, // Match hint text color
+                color: lightGrey4,
                 fontWeight: FontWeight.w400,
               ),
             ),
@@ -169,7 +188,7 @@ class _DropdownSelectorState extends State<DropdownSelector> {
           child: CustomTextWidget(
             text: value,
             fontSize: 16.spMin,
-            color: black, // Match hint text color
+            color: black, // Ensure dropdown items are visible
             fontWeight: FontWeight.w400,
           ),
         ),
@@ -237,56 +256,3 @@ class _FilterButtonState extends State<FilterButton> {
     );
   }
 }
-
-
-   //filter button
-              // Container(
-              //   padding: EdgeInsets.all(4.spMin),
-              //   decoration: BoxDecoration(
-              //     color: lightGrey3,
-              //     borderRadius: BorderRadius.circular(20.spMin),
-              //   ),
-              //   child: Row(
-              //     mainAxisAlignment: MainAxisAlignment.spaceBetween,
-              //     children: [
-              //       //button 1
-              //       Container(
-              //         padding: EdgeInsets.symmetric(
-              //           horizontal: 31.spMin,
-              //           vertical: 5.spMin,
-              //         ),
-              //         decoration: BoxDecoration(
-              //           color: white,
-              //           borderRadius: BorderRadius.circular(16.spMin),
-              //         ),
-              //         child: Padding(
-              //           padding: EdgeInsets.symmetric(
-              //             vertical: 8.spMin,
-              //             horizontal: 16.spMin,
-              //           ),
-              //           child: CustomTextWidget(
-              //             text: 'One Way',
-              //             fontSize: 14.spMin,
-              //             color: black,
-              //             fontWeight: FontWeight.w500,
-              //           ),
-              //         ),
-              //       ),
-              //       //button 2
-              //       CustomTextWidget(
-              //         text: 'Round trip',
-              //         fontSize: 14.spMin,
-              //         color: tealAccent,
-              //         fontWeight: FontWeight.w500,
-              //       ),
-
-              //       //button 3
-              //       CustomTextWidget(
-              //         text: 'Multi-City',
-              //         fontSize: 14.spMin,
-              //         color: tealAccent,
-              //         fontWeight: FontWeight.w500,
-              //       ),
-              //     ],
-              //   ),
-              // ),
