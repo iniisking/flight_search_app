@@ -96,7 +96,7 @@ class _ResultScreenState extends ConsumerState<ResultScreen> {
                   ],
                 ),
                 Assets.svg.flightIcon.svg(),
-                // To column
+
                 Column(
                   crossAxisAlignment: CrossAxisAlignment.start,
                   children: [
@@ -151,7 +151,6 @@ class _ResultScreenState extends ConsumerState<ResultScreen> {
           ),
           SizedBox(height: 14.spMin),
 
-          // Show loading or empty state
           if (state.isLoading)
             Expanded(
               child: Center(
@@ -196,7 +195,6 @@ class _ResultScreenState extends ConsumerState<ResultScreen> {
               ),
             )
           else
-            // PageView of results
             Container(
               padding: EdgeInsets.only(top: 16.spMin, bottom: 16.spMin),
               color: white,

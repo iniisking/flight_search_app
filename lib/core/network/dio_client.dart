@@ -1,5 +1,7 @@
 import 'dart:convert';
+import 'package:flutter/material.dart';
 import 'package:http/http.dart' as http;
+import 'package:flutter_dotenv/flutter_dotenv.dart';
 
 class DioClient {
   final String baseUrl;
@@ -7,7 +9,7 @@ class DioClient {
 
   DioClient({required this.baseUrl})
     : defaultParams = {
-        'access_key': '5fd3d4b8342593d90e29e4ad20e75120', // Your actual API key
+        'access_key': dotenv.env['AVIATION_STACK_API_KEY'] ?? '',
       };
 
   Future<Map<String, dynamic>> get(
@@ -17,15 +19,15 @@ class DioClient {
     final params = {...defaultParams, ...?queryParameters};
     final uri = Uri.parse('$baseUrl$endpoint').replace(queryParameters: params);
 
-    print('API Request: $uri'); // Debug logging
+    debugPrint('API Request: $uri');
 
     final response = await http.get(uri);
 
     if (response.statusCode == 200) {
       final data = json.decode(response.body);
-      print(
+      debugPrint(
         'API Response: ${data['pagination']?['count'] ?? 0} flights found',
-      ); // Debug logging
+      );
       return data;
     } else {
       throw Exception(

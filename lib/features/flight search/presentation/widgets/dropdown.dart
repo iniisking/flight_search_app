@@ -1,3 +1,5 @@
+// ignore_for_file: deprecated_member_use_from_same_package, deprecated_member_use
+
 import 'package:flight_search_app/features/flight%20search/presentation/widgets/colors.dart';
 import 'package:flight_search_app/features/flight%20search/presentation/widgets/text.dart';
 import 'package:flight_search_app/gen/assets.gen.dart';
@@ -39,19 +41,19 @@ class _DropdownSelectorState extends State<DropdownSelector> {
       ),
       child: DropdownButtonFormField<String>(
         borderRadius: BorderRadius.circular(12.spMin),
-        value: widget.value, // Make sure this is set correctly
+        value: widget.value,
         onChanged: widget.isLoading ? null : widget.onChanged,
         validator: widget.validator,
         style: TextStyle(
           fontSize: 16.spMin,
           fontWeight: FontWeight.w400,
           overflow: TextOverflow.ellipsis,
-          color: black, // Ensure text color is visible
+          color: black,
         ),
         decoration: InputDecoration(
           hintText: widget.isLoading ? 'Loading...' : widget.hintText,
           hintStyle: TextStyle(
-            color: lightGrey4, // Use a visible color for hint text
+            color: lightGrey4,
             fontSize: 16.spMin,
             fontWeight: FontWeight.w400,
             letterSpacing: 0.spMin,
@@ -66,10 +68,7 @@ class _DropdownSelectorState extends State<DropdownSelector> {
           ),
           focusedBorder: OutlineInputBorder(
             borderRadius: BorderRadius.circular(12.spMin),
-            borderSide: BorderSide(
-              color: blueAccent,
-              width: 1.spMin,
-            ), // Add border when focused
+            borderSide: BorderSide(color: blueAccent, width: 1.spMin),
           ),
           enabledBorder: OutlineInputBorder(
             borderRadius: BorderRadius.circular(12.spMin),
@@ -102,23 +101,19 @@ class _DropdownSelectorState extends State<DropdownSelector> {
             ? null
             : Padding(
                 padding: EdgeInsets.all(16.spMin),
-                child: Assets.svg.dropdown.svg(
-                  color: black,
-                ), // Ensure icon is visible
+                child: Assets.svg.dropdown.svg(color: black),
               ),
         isExpanded: true,
-        dropdownColor:
-            white, // Change dropdown background to white for better contrast
-        iconEnabledColor: black, // Ensure dropdown icon color is visible
+        dropdownColor: white,
+        iconEnabledColor: black,
         selectedItemBuilder: (BuildContext context) {
-          // This builder ensures the selected item is displayed with proper styling
           return widget.options.map<Widget>((String item) {
             return Container(
               alignment: Alignment.centerLeft,
               child: CustomTextWidget(
                 text: item,
                 fontSize: 16.spMin,
-                color: black, // Ensure selected text is visible
+                color: black,
                 fontWeight: FontWeight.w400,
               ),
             );
@@ -188,7 +183,7 @@ class _DropdownSelectorState extends State<DropdownSelector> {
           child: CustomTextWidget(
             text: value,
             fontSize: 16.spMin,
-            color: black, // Ensure dropdown items are visible
+            color: black,
             fontWeight: FontWeight.w400,
           ),
         ),
@@ -234,7 +229,7 @@ class _FilterButtonState extends State<FilterButton> {
           return GestureDetector(
             onTap: () => _selectFilter(filter),
             child: Container(
-              width: 121.spMin, // Fixed width of 121px
+              width: 121.spMin,
               padding: EdgeInsets.symmetric(vertical: 8.spMin),
               decoration: BoxDecoration(
                 color: isSelected ? white : Colors.transparent,

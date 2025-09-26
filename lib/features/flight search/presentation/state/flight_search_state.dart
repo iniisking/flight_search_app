@@ -1,6 +1,5 @@
 import 'package:flight_search_app/features/flight%20search/domain/entities/flight.dart';
 import 'package:flight_search_app/features/flight%20search/domain/use_cases/search_flights.dart';
-import 'package:flutter_riverpod/flutter_riverpod.dart';
 import 'package:flutter_riverpod/legacy.dart';
 
 class FlightSearchState {

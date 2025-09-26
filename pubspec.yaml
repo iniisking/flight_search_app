@@ -71,6 +71,7 @@ flutter:
   assets:
     - assets/images/
     - assets/svg/
+    - assets/demo/
     - .env
 flutter_gen:
   output: lib/gen/

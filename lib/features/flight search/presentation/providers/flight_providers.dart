@@ -5,10 +5,10 @@ import 'package:flight_search_app/features/flight%20search/presentation/state/fl
 import 'package:flutter_riverpod/flutter_riverpod.dart';
 import 'package:flight_search_app/core/network/dio_client.dart';
 import 'package:flutter_riverpod/legacy.dart';
+import 'package:flutter_dotenv/flutter_dotenv.dart';
 
-// Providers
 final dioClientProvider = Provider<DioClient>((ref) {
-  return DioClient(baseUrl: 'http://api.aviationstack.com/v1');
+  return DioClient(baseUrl: dotenv.env['AVIATION_STACK_BASE_URL'] ?? '');
 });
 
 final flightRepositoryProvider = Provider<FlightRepository>((ref) {

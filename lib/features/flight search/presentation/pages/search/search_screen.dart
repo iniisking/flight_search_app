@@ -1,3 +1,5 @@
+// ignore_for_file: deprecated_member_use, use_build_context_synchronously
+
 import 'package:flight_search_app/features/flight%20search/presentation/pages/search/result_screen.dart';
 import 'package:flight_search_app/features/flight%20search/presentation/providers/flight_providers.dart';
 import 'package:flight_search_app/features/flight%20search/presentation/widgets/appbar.dart';
@@ -294,7 +296,6 @@ class _SearchScreenState extends ConsumerState<SearchScreen> {
     }
 
     ref.read(flightSearchNotifierProvider.notifier).searchFlights().then((_) {
-      // Navigate to results screen after search completes
       if (ref.read(flightSearchNotifierProvider).error == null) {
         Navigator.push(
           context,

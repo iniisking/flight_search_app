@@ -2,6 +2,7 @@ import 'package:flight_search_app/core/network/dio_client.dart';
 import 'package:flight_search_app/features/flight%20search/data/models/flight_model.dart';
 import 'package:flight_search_app/features/flight%20search/domain/entities/flight.dart';
 import 'package:flight_search_app/features/flight%20search/domain/repositories/flight_repository.dart';
+import 'package:flutter/material.dart';
 
 class FlightRepositoryImpl implements FlightRepository {
   final DioClient _dioClient;
@@ -15,14 +16,13 @@ class FlightRepositoryImpl implements FlightRepository {
     required DateTime date,
   }) async {
     try {
-      // Use IATA codes for airport search
       final response = await _dioClient.get(
         '/flights',
         queryParameters: {
           'dep_iata': departure.toUpperCase(),
           'arr_iata': arrival.toUpperCase(),
           'flight_date': _formatDate(date),
-          'limit': 50, // Limit results for better performance
+          'limit': 50,
         },
       );
 
@@ -37,7 +37,7 @@ class FlightRepositoryImpl implements FlightRepository {
           .toList();
     } catch (e) {
       // Fallback to mock data if API fails
-      print('API Error: $e');
+      debugPrint('API Error: $e');
       return _getMockFlights(departure, arrival, date);
     }
   }
@@ -47,7 +47,6 @@ class FlightRepositoryImpl implements FlightRepository {
     String arrival,
     DateTime date,
   ) {
-    // Provide mock data for demo purposes
     return [
       FlightModel(
         flightNumber: 'AA123',

@@ -2,36 +2,21 @@ import 'package:flight_search_app/features/flight%20search/domain/entities/fligh
 
 class FlightModel extends Flight {
   FlightModel({
-    required String flightNumber,
-    required String airlineName,
-    String? airlineIata,
-    required String departureAirport,
-    required String arrivalAirport,
-    required String departureIata,
-    required String arrivalIata,
-    required DateTime departureTime,
-    required DateTime arrivalTime,
-    String? aircraft,
-    required String duration,
-    required int stops,
-    required String flightStatus,
-    required String flightDate,
-  }) : super(
-         flightNumber: flightNumber,
-         airlineName: airlineName,
-         airlineIata: airlineIata,
-         departureAirport: departureAirport,
-         arrivalAirport: arrivalAirport,
-         departureIata: departureIata,
-         arrivalIata: arrivalIata,
-         departureTime: departureTime,
-         arrivalTime: arrivalTime,
-         aircraft: aircraft,
-         duration: duration,
-         stops: stops,
-         flightStatus: flightStatus,
-         flightDate: flightDate,
-       );
+    required super.flightNumber,
+    required super.airlineName,
+    super.airlineIata,
+    required super.departureAirport,
+    required super.arrivalAirport,
+    required super.departureIata,
+    required super.arrivalIata,
+    required super.departureTime,
+    required super.arrivalTime,
+    super.aircraft,
+    required super.duration,
+    required super.stops,
+    required super.flightStatus,
+    required super.flightDate,
+  });
 
   factory FlightModel.fromJson(Map<String, dynamic> json) {
     final departure = json['departure'];
@@ -62,7 +47,7 @@ class FlightModel extends Flight {
       arrivalTime: arrivalTime,
       aircraft: json['aircraft']?['model'],
       duration: _calculateDuration(departureTime, arrivalTime),
-      stops: 0, // AviationStack doesn't provide stops info
+      stops: 0, // AviationStack does not provide stops info
       flightStatus: json['flight_status'] ?? 'unknown',
       flightDate:
           json['flight_date'] ?? DateTime.now().toString().split(' ')[0],

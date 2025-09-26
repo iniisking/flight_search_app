@@ -39,15 +39,12 @@ class Flight {
     return '${arrivalTime.hour.toString().padLeft(2, '0')}:${arrivalTime.minute.toString().padLeft(2, '0')}';
   }
 
-  // Generate airline logo URL using IATA code
   String? get airlineLogo {
     if (airlineIata == null) return null;
     return 'https://images.kiwi.com/airlines/64/${airlineIata!.toUpperCase()}.png';
   }
 
-  // Mock price for demo purposes (since API doesn't provide it)
   double get price {
-    // Generate a realistic price based on distance and airline
     final basePrice = 150.0;
     final randomFactor = _generateStableRandom(flightNumber);
     return (basePrice * (0.8 + randomFactor * 0.4)).roundToDouble();
